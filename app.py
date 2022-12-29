@@ -73,8 +73,8 @@ genres_schema = GenreSchema(many=True)
 @movie_ns.route('/')
 class MoviesView(Resource):
     def get(self):
-        director_id = request.args.get('director', type=int)
-        genre_id = request.args.get('director', type=int)
+        director_id = request.args.get('director_id', type=int)
+        genre_id = request.args.get('genre_id', type=int)
         if director_id and genre_id:
             movies = db.session.query(Movie).filter(Movie.director_id == director_id, Movie.genre_id == genre_id).all()
             return movies_schema.dump(movies), 200
